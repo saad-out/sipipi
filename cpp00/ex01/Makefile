@@ -1,8 +1,8 @@
-NAME := megaphone
+NAME := ./contact
 CC := g++
 CFLAGS := -Wall -Wextra -Werror
 
-SRCS := megaphone.cpp
+SRCS := Contact.cpp
 
 OBJS := $(SRCS:.cpp=.o)
 
