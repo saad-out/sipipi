@@ -1,5 +1,9 @@
 #include "PhoneBook.hpp"
 
+PhoneBook::PhoneBook() {
+    index = 0;
+}
+
 void PhoneBook::new_contact() {
     if (index == 8)
         index = 0, is_full = true;

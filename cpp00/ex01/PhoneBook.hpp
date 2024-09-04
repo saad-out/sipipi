@@ -14,7 +14,8 @@ class PhoneBook {
         Contact* get_contacts();
         int get_size();
         void display_contact(int index);
-    PhoneBook() : index(0) {}
+
+    PhoneBook(void);
 };
 
 #endif // __PHONEBOOK_HPP__
