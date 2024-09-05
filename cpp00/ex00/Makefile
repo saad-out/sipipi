@@ -1,5 +1,5 @@
 NAME := megaphone
-CC := g++
+CC := c++
 CFLAGS := -Wall -Wextra -Werror
 
 SRCS := megaphone.cpp

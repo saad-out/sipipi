@@ -1,5 +1,5 @@
 NAME := ./contact
-CC := g++
+CC := c++
 CFLAGS := -Wall -Wextra -Werror
 
 SRCS := Contact.cpp PhoneBook.cpp main.cpp
