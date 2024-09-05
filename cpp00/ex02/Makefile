@@ -1,0 +1,24 @@
+NAME := ./account
+CC := c++
+CFLAGS := -Wall -Wextra -Werror
+
+SRCS := Account.cpp tests.cpp
+HEADERS := Account.hpp
+
+OBJS := $(SRCS:.cpp=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+
+%.o: %.cpp $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
