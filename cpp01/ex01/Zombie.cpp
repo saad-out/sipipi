@@ -24,6 +24,7 @@ Zombie::~Zombie(void)
 Zombie& Zombie::operator=(const Zombie &other)
 {
     std::cout << "copy constructor called" << std::endl;
-    name = other.name;
+    if (this != &other)
+        name = other.name;
     return *this;
 }
