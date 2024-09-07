@@ -20,3 +20,10 @@ Zombie::~Zombie(void)
 {
     std::cout << this->name << " destroyed." << std::endl;
 }
+
+Zombie& Zombie::operator=(const Zombie &other)
+{
+    std::cout << "copy constructor called" << std::endl;
+    name = other.name;
+    return *this;
+}

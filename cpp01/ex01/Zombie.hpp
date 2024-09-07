@@ -11,11 +11,11 @@ class Zombie
         Zombie(void);
         Zombie(std::string name);
         ~Zombie(void);
+        Zombie& operator=(const Zombie &other);
         void announce(void);
 };
 
-// Prototypes
-Zombie* newZombie(std::string name);
-void randomChump(std::string name);
+// protoypes
+Zombie *zombieHorde(int N, std::string name);
 
 #endif // __ZOMBIE__HPP__

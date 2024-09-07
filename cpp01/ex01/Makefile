@@ -1,8 +1,8 @@
-NAME := ./zombie
+NAME := ./zombieHorde
 CC := c++
 CFLAGS := -Wall -Wextra -Werror
 
-SRCS := Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+SRCS := Zombie.cpp ZombieHorde.cpp main.cpp
 HEADERS := Zombie.hpp
 
 OBJS := $(SRCS:.cpp=.o)
