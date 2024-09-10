@@ -2,21 +2,25 @@
 
 void Harl::debug(void)
 {
+    std::cout << "[ DEBUG ]\n";
     std::cout << "Debugging message\n";
 }
 
 void Harl::info(void)
 {
+    std::cout << "[ INFO ]\n";
     std::cout << "Info message\n";
 }
 
 void Harl::warning(void)
 {
+    std::cout << "[ WARNING ]\n";
     std::cout << "Warning message\n";
 }
 
 void Harl::error(void)
 {
+    std::cout << "[ ERROR ]\n";
     std::cout << "Error message\n";
 }
 
@@ -100,5 +104,8 @@ void Harl::filter(std::string level)
         }
         if (ptr)
             (this->*ptr)();
+        else
+            std::cout << "[ Probably complaining about insignificant problems ]";
+        std::cout << std::endl;
     }
 }
