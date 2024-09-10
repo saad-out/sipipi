@@ -8,7 +8,7 @@ int main(void)
     obj.complain("DEBUG");
     obj.complain("INFO");
     obj.complain("WARNING");
-    obj.complain("HEY");
+    obj.complain("DOES NOT EXIST");
     obj.complain("ERROR");
 
     return (0);

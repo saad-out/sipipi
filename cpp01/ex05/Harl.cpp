@@ -22,15 +22,14 @@ void Harl::error(void)
 
 Level str_value(std::string& str)
 {
-    if (str == "DEBUG")
-        return (Level::DEBUG);
-    else if (str == "INFO")
-        return (Level::INFO);
-    else if (str == "WARNING")
-        return (Level::WARNING);
-    else if (str == "ERROR")
-        return (Level::ERROR);
-    return (Level::UNKNOWN);
+    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    Level values[] = {Level::DEBUG, Level::INFO, Level::WARNING, Level::ERROR};
+    for (int i = 0; i < 4; i++)
+    {
+        if (str == levels[i])
+            return values[i];
+    }
+    return Level::UNKNOWN;
 }
 
 void Harl::complain(std::string level)
