@@ -21,6 +21,7 @@ int main(int ac, char **av)
     std::ofstream ofile (out_filename);
     if (!ofile.is_open())
     {
+        ifile.close();
         std::cerr << "Error opening: " << out_filename << std::endl;
         return (1);
     }
