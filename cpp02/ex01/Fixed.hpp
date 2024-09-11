@@ -23,6 +23,4 @@ class Fixed
         friend std::ostream & operator << (std::ostream &out, const Fixed &f);
 };
 
-std::ostream & operator << (std::ostream &out, const Fixed &f);
-
 #endif // __FIXED_HPP__
