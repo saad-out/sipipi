@@ -67,11 +67,7 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat(void) const
 {
-    // 2^8
-    int pow = 1;
-    for (int i = 0; i < factor; i++)
-        pow *= 2;
-    return ((float)value / pow);
+    return ((float)value / ft_pow(2, factor));
 }
 
 int Fixed::toInt(void) const
