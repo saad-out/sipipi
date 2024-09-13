@@ -2,8 +2,8 @@ NAME := ./main
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -pedantic
 
-SRCS := ClapTrap.cpp main.cpp
-HEADERS := ClapTrap.hpp
+SRCS := ClapTrap.cpp main.cpp FragTrap.cpp 
+HEADERS := ClapTrap.hpp FragTrap.hpp
 
 OBJS := $(SRCS:.cpp=.o)
 
