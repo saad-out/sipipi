@@ -26,6 +26,18 @@ ScavTrap::~ScavTrap(void)
     std::cout << "ScavTrap Destructor called" << std::endl;
 }
 
+void ScavTrap::attack(const std::string &target)
+{
+    if (energy > 0 && hit > 0)
+    {
+        energy--;
+        std::cout << "ScavTrap " << name << " attacks " << target
+                << ", causing " << damage << " points of damage!" << std::endl;
+    }
+    else
+        std::cout << "ScavTrap " << name << " is exhausted!" << std::endl;
+}
+
 void ScavTrap::info(void)
 {
     std::cout << "name: " << name
