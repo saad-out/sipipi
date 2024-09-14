@@ -3,3 +3,6 @@
 
 # ignore log files
 *.log
+
+# main exec files
+main
