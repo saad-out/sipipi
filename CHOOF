@@ -1,2 +1,5 @@
 every header should work independently (include everything needed)
 copy constructor khas KOLHOM ykoun fihout: *this = other flkher !!!!!!
+
+cpp04/ex03: While assigning a Materia to another, copying the type doesn’t make
+sense.
