@@ -1,9 +1,9 @@
 NAME := ./contact
 CC := c++
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -std=c++98
 
 SRCS := Contact.cpp PhoneBook.cpp main.cpp
-HEADERS := Contact.hpp PhoneBook.hpp
+HEADERS := Contact.hpp PhoneBook.hpp Colors.hpp
 
 OBJS := $(SRCS:.cpp=.o)
 

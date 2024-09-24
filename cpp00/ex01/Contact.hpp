@@ -1,4 +1,5 @@
 #ifndef __CONTACT_HPP__
+#define __CONTACT_HPP__
 
 #include <iostream>
 
@@ -25,5 +26,7 @@ class Contact {
         std::string get_darkest_secret();
         int get_index();
 };
+
+std::string trim(std::string& str);
 
 #endif // __CONTACT_HPP__

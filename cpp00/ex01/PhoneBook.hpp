@@ -1,4 +1,5 @@
 #ifndef __PHONEBOOK_HPP__
+#define __PHONEBOOK_HPP__
 
 #include <iostream>
 #include "Contact.hpp"
@@ -7,7 +8,7 @@ class PhoneBook {
     private:
         Contact contacts[8];
         int     index;
-        bool    is_full = false;
+        // bool    is_full = false;
 
     public:
         void new_contact();
