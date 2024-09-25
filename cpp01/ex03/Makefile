@@ -1,6 +1,6 @@
 NAME := ./main
 CC := c++
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -std=c++98
 
 SRCS := Weapon.cpp HumanA.cpp HumanB.cpp main.cpp 
 HEADERS := Weapon.hpp HumanA.hpp HumanB.hpp
@@ -22,3 +22,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.SECONDARY: $(OBJS)

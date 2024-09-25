@@ -1,6 +1,6 @@
 NAME := ./main
 CC := c++
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -std=c++98
 
 SRCS := main.cpp
 
@@ -21,3 +21,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.SECONDARY: $(OBJS)
