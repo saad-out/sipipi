@@ -12,13 +12,13 @@ int main(int ac, char **av)
     std::string in_filename = av[1];
     std::string out_filename = in_filename + ".replace";
 
-    std::ifstream ifile (in_filename);
+    std::ifstream ifile (in_filename.c_str());
     if (!ifile.is_open())
     {
-        std::cerr << "Unexisting file: " << in_filename << std::endl;
+        std::cerr << "Error opening: " << in_filename << std::endl;
         return (1);
     }
-    std::ofstream ofile (out_filename);
+    std::ofstream ofile (out_filename.c_str());
     if (!ofile.is_open())
     {
         ifile.close();
@@ -30,6 +30,12 @@ int main(int ac, char **av)
 
     while (getline(ifile, line))
     {
+        if (s1.empty())
+        {
+            ofile << line << '\n';
+            continue;
+        }
+    
         size_t  line_length = line.length();
         size_t  str_size = s1.length();
     
