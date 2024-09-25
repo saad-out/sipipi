@@ -3,13 +3,14 @@
 HumanB::HumanB(std::string name)
 {
     this->name = name;
+    this->weapon = NULL;
 }
 
 void HumanB::attack(void) const
 {
     std::cout << name
               << " attacks with their "
-              << (*weapon).getType()
+              << ((weapon != NULL) ? weapon->getType() : "chi l3iba")
               << std::endl;
 }
 
