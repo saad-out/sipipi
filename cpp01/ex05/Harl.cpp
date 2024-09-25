@@ -2,58 +2,35 @@
 
 void Harl::debug(void)
 {
-    std::cout << "Debugging message\n";
+    std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!\n";
 }
 
 void Harl::info(void)
 {
-    std::cout << "Info message\n";
+    std::cout << "I cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!\n";
 }
 
 void Harl::warning(void)
 {
-    std::cout << "Warning message\n";
+    std::cout << "I think I deserve to have some extra bacon for free. I've been coming for years whereas you started working here since last month.\n";
 }
 
 void Harl::error(void)
 {
-    std::cout << "Error message\n";
-}
-
-Level str_value(std::string& str)
-{
-    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    Level values[] = {Level::DEBUG, Level::INFO, Level::WARNING, Level::ERROR};
-    for (int i = 0; i < 4; i++)
-    {
-        if (str == levels[i])
-            return values[i];
-    }
-    return Level::UNKNOWN;
+    std::cout << "This is unacceptable! I want to speak to the manager now.\n";
 }
 
 void Harl::complain(std::string level)
 {
-    void (Harl:: *ptr) (void);
+    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    void (Harl:: *array[]) (void) = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
 
-    switch (str_value(level))
+    for (int i = 0; i < 4; i++)
     {
-        case Level::DEBUG:
-            ptr = &Harl::debug;
+        if (level == levels[i])
+        {
+            (this->*array[i])();
             break;
-        case Level::INFO:
-            ptr = &Harl::info;
-            break;
-        case Level::WARNING:
-            ptr = &Harl::warning;
-            break;
-        case Level::ERROR:
-            ptr = &Harl::error;    
-            break;
-        default:
-            ptr = nullptr;
-            break;
+        }
     }
-    if (ptr)
-        (this->*ptr)();
 }

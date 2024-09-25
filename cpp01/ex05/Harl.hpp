@@ -3,15 +3,6 @@
 
 #include <iostream>
 
-enum class Level
-{
-    DEBUG,
-    INFO,
-    WARNING,
-    ERROR,
-    UNKNOWN,
-};
-
 class Harl
 {
     private:
@@ -23,7 +14,5 @@ class Harl
     public:
         void complain(std::string level);
 };
-
-Level str_value(std::string& str);
 
 #endif // __HARL__HPP__
