@@ -1,111 +1,82 @@
 #include "Harl.hpp"
 
+# define GREEN "\e[1;32m"
+# define RESET "\e[0m"
+# define RED "\e[1;91m"
+# define CYAN "\e[1;36m"
+# define YELLOW "\e[1;33m"
+# define PURPLE "\e[1;35m"
+# define BLUE "\e[1;34m"
+
 void Harl::debug(void)
 {
-    std::cout << "[ DEBUG ]\n";
-    std::cout << "Debugging message\n";
+    std::cout << CYAN << "[ DEBUG ]\n";
+    std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!\n";
+    std::cout << RESET;
 }
 
 void Harl::info(void)
 {
-    std::cout << "[ INFO ]\n";
-    std::cout << "Info message\n";
+    std::cout << PURPLE << "[ INFO ]\n";
+    std::cout << "I cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!\n";
+    std::cout << RESET;
 }
 
 void Harl::warning(void)
 {
-    std::cout << "[ WARNING ]\n";
-    std::cout << "Warning message\n";
+    std::cout << YELLOW << "[ WARNING ]\n";
+    std::cout << "I think I deserve to have some extra bacon for free. I've been coming for years whereas you started working here since last month.\n";
+    std::cout << RESET;
 }
 
 void Harl::error(void)
 {
-    std::cout << "[ ERROR ]\n";
-    std::cout << "Error message\n";
-}
-
-Level str_value(std::string& str)
-{
-    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    Level values[] = {Level::DEBUG, Level::INFO, Level::WARNING, Level::ERROR};
-    for (int i = 0; i < 4; i++)
-    {
-        if (str == levels[i])
-            return values[i];
-    }
-    return Level::UNKNOWN;
-}
-
-int index(std::string& str)
-{
-    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    for (int i = 0; i < 4; i++)
-    {
-        if (str == levels[i])
-            return i;
-    }
-    return -1;
+    std::cout << RED << "[ ERROR ]\n";
+    std::cout << "This is unacceptable! I want to speak to the manager now.\n";
+    std::cout << RESET;
 }
 
 void Harl::complain(std::string level)
 {
-    void (Harl:: *ptr) (void);
+    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    void (Harl:: *array[]) (void) = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
 
-    switch (str_value(level))
+    for (int i = 0; i < 4; i++)
     {
-        case Level::DEBUG:
-            ptr = &Harl::debug;
+        if (level == levels[i])
+        {
+            (this->*array[i])();
             break;
-        case Level::INFO:
-            ptr = &Harl::info;
-            break;
-        case Level::WARNING:
-            ptr = &Harl::warning;
-            break;
-        case Level::ERROR:
-            ptr = &Harl::error;    
-            break;
-        default:
-            ptr = nullptr;
-            break;
+        }
     }
-    if (ptr)
-        (this->*ptr)();
 }
 
 void Harl::filter(std::string level)
 {
-    void (Harl:: *ptr) (void);
+    std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-    while (level.empty() == false)
+    int i = 0;
+    while (i < 4 && level != levels[i])
+        i++;
+    switch (i)
     {
-        switch (str_value(level))
-        {
-            case Level::DEBUG:
-                ptr = &Harl::debug;
-                level = "INFO";
-                break;
-            case Level::INFO:
-                ptr = &Harl::info;
-                level = "WARNING";
-                break;
-            case Level::WARNING:
-                ptr = &Harl::warning;
-                level = "ERROR";
-                break;
-            case Level::ERROR:
-                ptr = &Harl::error;    
-                level = "";
-                break;
-            default:
-                ptr = nullptr;
-                level = "";
-                break;
-        }
-        if (ptr)
-            (this->*ptr)();
-        else
-            std::cout << "[ Probably complaining about insignificant problems ]";
-        std::cout << std::endl;
+        case DEBUG:
+            debug();
+            std::cout << "\n";
+            /* fall through */
+        case INFO:
+            info();
+            std::cout << "\n";
+            /* fall through */
+        case WARNING:
+            warning();
+            std::cout << "\n";
+            /* fall through */
+        case ERROR:
+            error();
+            std::cout << "\n";
+            break;
+        default:
+            std::cout << "[ Probably complaining about insignificant problems ]\n";
     }
 }

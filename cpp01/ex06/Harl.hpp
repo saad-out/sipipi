@@ -3,13 +3,13 @@
 
 #include <iostream>
 
-enum class Level
+enum Level
 {
     DEBUG,
     INFO,
     WARNING,
     ERROR,
-    UNKNOWN,
+    UNKNOWN
 };
 
 class Harl
@@ -24,8 +24,5 @@ class Harl
         void complain(std::string level);
         void filter(std::string level);
 };
-
-Level str_value(std::string& str);
-int index(std::string& str);
 
 #endif // __HARL__HPP__
