@@ -7,7 +7,7 @@ class Fixed
 {
     private:
         int value;
-        static const int factor;
+        static const int fraction;
     
     public:
         Fixed(void);

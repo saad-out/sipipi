@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-const int Fixed::factor = 8;
+const int Fixed::fraction = 8;
 
 Fixed::Fixed(void)
 {
