@@ -2,16 +2,7 @@
 #include <iostream>
 #include <cmath>
 
-const int Fixed::factor = 8;
-
-int ft_pow(int x, int y)
-{
-    // x^y
-    int result = 1;
-    for (int i = 0; i < y; i++)
-        result *= x;
-    return (result);
-}
+const int Fixed::fraction = 8;
 
 Fixed::Fixed(void)
 {
@@ -23,14 +14,14 @@ Fixed::Fixed(const int n)
 {
     std::cout << "Int constructor called" << std::endl;
     // n * 2^8
-    value = (int)roundf(n * ft_pow(2, factor));
+    value = n << fraction;
 }
 
 Fixed::Fixed(const float f)
 {
     std::cout << "Float constructor called" << std::endl;
     // f * 2^8
-    value = (int)roundf(f * ft_pow(2, factor));
+    value = (int)roundf(f * (1 << fraction));
 }
 
 Fixed::~Fixed(void)
@@ -67,12 +58,12 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat(void) const
 {
-    return ((float)value / ft_pow(2, factor));
+    return ((float)value / (1 << fraction));
 }
 
 int Fixed::toInt(void) const
 {
-    return ((int)roundf(toFloat()));
+    return (value >> fraction);
 }
 
 std::ostream & operator << (std::ostream &out, const Fixed &f)
