@@ -7,7 +7,7 @@ class Fixed
 {
     private:
         int value;
-        static const int factor;
+        static const int fraction;
     
     public:
         Fixed(void);
@@ -43,7 +43,8 @@ class Fixed
         float toFloat(void) const;
         int toInt(void) const;
 
-        friend std::ostream & operator << (std::ostream &out, const Fixed &f);
 };
+
+std::ostream & operator << (std::ostream &out, const Fixed &f);
 
 #endif // __FIXED_HPP__
