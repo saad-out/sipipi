@@ -15,8 +15,8 @@ class Fixed
         Fixed(const float f);
         ~Fixed(void);
         Fixed(const Fixed& other);
-
         Fixed& operator = (const Fixed& other);
+
         bool operator == (const Fixed& other) const;
         bool operator != (const Fixed& other) const;
         bool operator > (const Fixed& other) const;
@@ -27,10 +27,10 @@ class Fixed
         Fixed operator - (const Fixed& other) const;
         Fixed operator / (const Fixed& other) const;
         Fixed operator * (const Fixed& other) const;
-        Fixed& operator ++ (void);
-        Fixed& operator -- (void);
-        Fixed operator ++ (int);
-        Fixed operator -- (int);
+        Fixed& operator ++ (void); // prefix increment
+        Fixed& operator -- (void); // prefix decrement
+        Fixed operator ++ (int);   // postfix increment
+        Fixed operator -- (int);   // postfix decrement
 
         static Fixed& min(Fixed &f1, Fixed &f2);
         static Fixed& max(Fixed &f1, Fixed &f2);
