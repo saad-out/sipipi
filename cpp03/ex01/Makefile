@@ -1,6 +1,6 @@
 NAME := ./main
 CC := c++
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -std=c++98
 
 SRCS := ClapTrap.cpp main.cpp ScavTrap.cpp
 HEADERS := ClapTrap.hpp ScavTrap.hpp
@@ -22,3 +22,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.SECONDARY: $(OBJS)

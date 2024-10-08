@@ -19,10 +19,13 @@ ClapTrap::ClapTrap(const ClapTrap &other)
 ClapTrap& ClapTrap::operator = (const ClapTrap &other)
 {
     std::cout << "Copy assignement constructor called" << std::endl;
-    this->name = other.name;
-    this->hit = other.hit;
-    this->energy = other.energy;
-    this->damage = other.damage;
+    if (this != &other)
+    {
+        this->name = other.name;
+        this->hit = other.hit;
+        this->energy = other.energy;
+        this->damage = other.damage;
+    }
     return (*this);
 }
 
