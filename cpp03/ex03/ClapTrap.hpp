@@ -14,7 +14,6 @@ class ClapTrap
     public:
         ClapTrap(void);
         ClapTrap(std::string name);
-        ClapTrap(std::string name, unsigned int hit, unsigned int energy, unsigned int damage);
         ClapTrap(const ClapTrap &other);
         ClapTrap& operator = (const ClapTrap &other);
         ~ClapTrap(void);
@@ -22,13 +21,7 @@ class ClapTrap
         void attack(const std::string &target);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
-        void info(void); // debug
-
-        void salam (void)
-        {
-            std::cout << "heeey\n";
-        }
-        int kkk;
+        /*void info(void); // debug*/
 };
 
 #endif // __CLAPTRAP_HPP__
