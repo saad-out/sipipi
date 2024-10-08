@@ -120,16 +120,14 @@ Fixed Fixed::operator - (const Fixed &other) const
 Fixed Fixed::operator / (const Fixed &other) const
 {
     Fixed result;
-    result.value = this->value / other.value;
-    result.value = (result.value << fraction);
+    result.value = (this->value << fraction) / other.value;
     return (result);
 }
 
 Fixed Fixed::operator * (const Fixed &other) const
 {
     Fixed result;
-    result.value = this->value * other.value;
-    result.value = (result.value >> fraction);
+    result.value = (this->value * other.value) >> fraction;
     return (result);
 }
 
