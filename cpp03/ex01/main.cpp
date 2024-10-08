@@ -5,18 +5,18 @@ int main()
 {
     ScavTrap a, b("JHON"), c(a), k("simo");
     k = b;
+    std::cout << std::endl;
 
 
-    std::cout << std::endl;
-    std::cout << "a: ";
-    a.info();
-    std::cout << "b: ";
-    b.info();
-    std::cout << "c: ";
-    c.info();
-    std::cout << "k: ";
-    k.info();
-    std::cout << std::endl;
+    /*std::cout << "a: ";*/
+    /*a.info();*/
+    /*std::cout << "b: ";*/
+    /*b.info();*/
+    /*std::cout << "c: ";*/
+    /*c.info();*/
+    /*std::cout << "k: ";*/
+    /*k.info();*/
+    /*std::cout << std::endl;*/
 
     a.attack("JHON");
     b.takeDamage(20);

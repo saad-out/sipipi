@@ -10,12 +10,6 @@ ClapTrap::ClapTrap(std::string name) : name(name), hit(10), energy(10), damage(0
     std::cout << "Name constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name, unsigned int hit, 
-                    unsigned int energy, unsigned int damage) : name(name), hit(hit), energy(energy), damage(damage)
-{
-    std::cout << "Everything constructor called" << std::endl;
-}
-
 ClapTrap::ClapTrap(const ClapTrap &other)
 {
     std::cout << "Copy constructor called" << std::endl;
@@ -25,10 +19,13 @@ ClapTrap::ClapTrap(const ClapTrap &other)
 ClapTrap& ClapTrap::operator = (const ClapTrap &other)
 {
     std::cout << "Copy assignement constructor called" << std::endl;
-    this->name = other.name;
-    this->hit = other.hit;
-    this->energy = other.energy;
-    this->damage = other.damage;
+    if (this != &other)
+    {
+        this->name = other.name;
+        this->hit = other.hit;
+        this->energy = other.energy;
+        this->damage = other.damage;
+    }
     return (*this);
 }
 

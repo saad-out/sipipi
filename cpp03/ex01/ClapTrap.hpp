@@ -14,7 +14,6 @@ class ClapTrap
     public:
         ClapTrap(void);
         ClapTrap(std::string name);
-        ClapTrap(std::string name, unsigned int hit, unsigned int energy, unsigned int damage);
         ClapTrap(const ClapTrap &other);
         ClapTrap& operator = (const ClapTrap &other);
         ~ClapTrap(void);
