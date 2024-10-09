@@ -7,34 +7,21 @@ DiamondTrap::DiamondTrap(void) : name("Unknown")
     hit = 100;
     energy = 50;
     damage = 30;
-    // name = ClapTrap::name + "_clap_name";
-    // // std::cout << name << "\n";
-    // hit = FragTrap::hit;
-    // energy = ScavTrap::energy;
-    // damage = FragTrap::damage;
 }
 
 DiamondTrap::DiamondTrap(std::string new_name)
 {
-    // (void)name;
     std::cout << "DiamondTrap name constructor called " <<  std::endl;
     name = new_name;
     ClapTrap::name = name + "_clap_name";
     hit = 100;
     energy = 50;
     damage = 30;
-    // name = ClapTrap::name + "_clap_name";
-    // // std::cout << name << "\n";
-    // hit = FragTrap::hit;
-    // energy = ScavTrap::energy;
-    // damage = FragTrap::damage;
-    // std::cout << name << " " << hit << " " << energy << " " << damage << "\n";
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& other) : ClapTrap(other), FragTrap(other), ScavTrap(other)
 {
     std::cout << "DiamondTrap Copy constructor called" << std::endl;
-    /*name = other.name;*/
     *this = other;
 }
 
