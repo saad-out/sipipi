@@ -6,3 +6,9 @@
 
 # main exec files
 main
+
+# ignore core files
+vgcore.*
+
+# vscode files
+.vscode
