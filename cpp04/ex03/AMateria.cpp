@@ -11,7 +11,8 @@ AMateria::AMateria(const AMateria& other)
 
 AMateria& AMateria::operator = (const AMateria& other)
 {
-    type = other.type;
+    /*type = other.type;*/ // copying type is not necessary
+    (void)other;
     return (*this);
 }
 
@@ -20,4 +21,9 @@ AMateria::~AMateria(void) {}
 const std::string& AMateria::getType(void) const
 {
     return (type);
+}
+
+void AMateria::use(ICharacter& target)
+{
+    (void)target;
 }

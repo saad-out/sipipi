@@ -17,9 +17,8 @@ class AMateria
         virtual ~AMateria(void);
     
         std::string const & getType() const; //Returns the materia type
-
         virtual AMateria* clone() const = 0;
-        virtual void use(ICharacter& target) = 0; // implement inc .cpp ?
+        virtual void use(ICharacter& target);
 };
 
 #endif // __AMATERIA_HPP__
