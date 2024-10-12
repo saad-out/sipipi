@@ -16,12 +16,19 @@ Cat::Cat(const Cat& other) : Animal(other), brain(NULL)
 Cat& Cat::operator = (const Cat& other)
 {
     std::cout << "Cat copy assignement called" << std::endl;
-    Animal::operator=(other);
-    if (brain)
-        delete brain;
-    Brain *newBrain = new Brain();
-    brain = newBrain;
-    *brain = *(other.brain);
+    if (this != &other)
+    {
+        Animal::operator=(other);
+        if (brain)
+            delete brain;
+        if (other.brain)
+        {
+            brain = new Brain();
+            *brain = *(other.brain);
+        }
+        else
+            brain = NULL;
+    }
     return (*this);
 }
 

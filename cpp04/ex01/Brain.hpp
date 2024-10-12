@@ -13,12 +13,9 @@ class Brain
         Brain(const Brain& other);
         Brain& operator = (const Brain& other);
         ~Brain(void);
-        void setChar(char c)
-        {
-            for (int i = 0; i < 100; i++)
-                ideas[i] = c;
-        }
-        void printChar(void) { std::cout << ideas[0] << std::endl;}
+
+        /*void setChar(char c);*/
+        /*void printChar(void) const;*/
 };
 
 #endif // __BRAIN_HPP__

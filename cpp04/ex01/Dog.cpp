@@ -16,15 +16,21 @@ Dog::Dog(const Dog& other) : Animal(other), brain(NULL)
 Dog& Dog::operator = (const Dog& other)
 {
     std::cout << "Dog copy assignement called" << std::endl;
-    Animal::operator=(other);
-    if (brain)
-        delete brain;
-    Brain *newBrain = new Brain();
-    brain = newBrain;
-    *brain = *(other.brain);
+    if (this != &other)
+    {
+        Animal::operator=(other);
+        if (brain)
+            delete brain;
+        if (other.brain)
+        {
+            brain = new Brain();
+            *brain = *(other.brain);
+        }
+        else
+            brain = NULL;
+    }
     return (*this);
 }
-
 
 Dog::~Dog(void)
 {

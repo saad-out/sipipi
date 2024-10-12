@@ -55,7 +55,7 @@ int main()
     /*}*/
 
     // The following line should not compile
-    // Animal a;
+    /*Animal a;*/
 
     return (0);
 }

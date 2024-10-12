@@ -23,3 +23,14 @@ Brain::~Brain(void)
 {
     std::cout << "Brain destructor called" << std::endl;
 }
+
+/*void Brain::setChar(char c)*/
+/*{*/
+/*    for (int i = 0; i < 100; i++)*/
+/*        ideas[i] = c;*/
+/*}*/
+/**/
+/*void Brain::printChar(void) const*/
+/*{*/
+/*    std::cout << ideas[0] << std::endl;*/
+/*}*/

@@ -53,6 +53,6 @@ int main()
     /*    c3.getBrain()->printChar();*/
     /**/
     /*}*/
-
+    /**/
     return (0);
 }
