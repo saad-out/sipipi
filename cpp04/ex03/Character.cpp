@@ -4,6 +4,7 @@ Character::Character(void) : name("unknown")
 {
     for (int i = 0; i < 4; i++)
         inventory[i] = NULL;
+    unequiped = NULL;
 }
 
 Character::Character(const std::string& name)
@@ -11,6 +12,7 @@ Character::Character(const std::string& name)
     this->name = name;
     for (int i = 0; i < 4; i++)
         inventory[i] = NULL;
+    unequiped = NULL;
 }
 
 Character::Character(const Character& other)
@@ -30,6 +32,22 @@ Character& Character::operator = (const Character& other)
         else
             this->inventory[i] = NULL;
     }
+    t_unequiped* tmp = unequiped;
+    while (tmp != NULL)
+    {
+        t_unequiped* next = tmp->next;
+        if (tmp->materia != NULL)
+            delete tmp->materia;
+        delete tmp;
+        tmp = next;
+    }
+    unequiped = NULL;
+    tmp = other.unequiped;
+    while (tmp != NULL)
+    {
+        add_to_unequiped(tmp->materia);
+        tmp = tmp->next;
+    }
     return (*this);
 }
 
@@ -39,6 +57,15 @@ Character::~Character(void)
     {
         if (inventory[i] != NULL)
             delete inventory[i];
+    }
+    t_unequiped* tmp = unequiped;
+    while (tmp != NULL)
+    {
+        t_unequiped* next = tmp->next;
+        if (tmp->materia != NULL)
+            delete tmp->materia;
+        delete tmp;
+        tmp = next;
     }
 }
 
@@ -61,10 +88,21 @@ void Character::equip(AMateria* m)
     }
 }
 
+void Character::add_to_unequiped(AMateria* m)
+{
+    t_unequiped* tmp = new t_unequiped;
+    tmp->materia = m;
+    tmp->next = unequiped;
+    unequiped = tmp;
+}
+
 void Character::unequip(int idx)
 {
     if ((idx >= 0 && idx < 4) && inventory[idx] != NULL)
+    {
+        add_to_unequiped(inventory[idx]);
         inventory[idx] = NULL;
+    }
 }
 
 void Character::use(int idx, ICharacter& target)

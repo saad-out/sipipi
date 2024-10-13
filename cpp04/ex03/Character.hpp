@@ -5,11 +5,19 @@
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
 
+struct unequiped
+{
+    AMateria* materia;
+    struct unequiped* next;
+};
+typedef struct unequiped t_unequiped;
+
 class Character : public ICharacter
 {
     private:
         std::string name;
         AMateria* inventory[4];
+        t_unequiped* unequiped;
 
     public:
         Character(void);
@@ -18,9 +26,9 @@ class Character : public ICharacter
         Character& operator = (const Character& other);
         ~Character(void);
 
-        // virtual ~ICharacter() {}
         std::string const & getName() const;
         void equip(AMateria* m);
+        void add_to_unequiped(AMateria* m);
         void unequip(int idx);
         void use(int idx, ICharacter& target);
 };

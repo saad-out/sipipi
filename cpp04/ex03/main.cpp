@@ -26,6 +26,14 @@ int main()
     me->use(0, *bob);
     me->use(1, *bob);
 
+    me->unequip(0);
+    me->unequip(1);
+    me->unequip(2);
+    me->use(0, *bob);
+
+    ICharacter* bob2 = me;
+    bob2->use(0, *bob);
+
     delete bob;
     delete me;
     delete src;
