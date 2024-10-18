@@ -2,8 +2,8 @@ NAME := ./main
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98
 
-SRCS := Bureaucrat.cpp main.cpp
-HEADERS := Bureaucrat.hpp
+SRCS := Bureaucrat.cpp main.cpp Form.cpp
+HEADERS := Bureaucrat.hpp Form.hpp
 
 OBJS := $(SRCS:.cpp=.o)
 

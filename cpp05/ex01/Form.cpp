@@ -1,8 +1,9 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form(const std::string name, int to_sign, int to_exec) : _name(name), _signed(false), _toSign(to_sign), _toExec(to_exec)
 {
-	if (to_sign < 1 || to_exec)
+	if (to_sign < 1 || to_exec < 1)
 		throw GradeTooHighException();
 	else if (to_sign > 150 || to_exec > 150)
 		throw GradeTooLowException();

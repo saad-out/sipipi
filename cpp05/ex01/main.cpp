@@ -1,61 +1,21 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
-	std::string name("jhon");
-
 	{
-		try {
-			Bureaucrat b(name, 0);
-		}
-		catch (Bureaucrat::GradeTooHighException& e)
-		{
-			std::cerr << e.what() << std::endl;
-		}
+		// Low grade to sign
+		Form f("from_1", 1, 5);
+		Bureaucrat b("Jhon", 3);
+		b.signForm(f);
 	}
 
 	{
-		try {
-			Bureaucrat b(name, 151);
-		}
-		catch (Bureaucrat::GradeTooLowException& e)
-		{
-			std::cerr << e.what() << std::endl;
-		}
+		// Valid grade to sign
+		Form f("from_2", 1, 5);
+		Bureaucrat b("Mike", 1);
+		b.signForm(f);
 	}
-
-	{
-		Bureaucrat b(name, 1);
-		try {
-			b.incrementGrade();
-		}
-		catch (Bureaucrat::GradeTooHighException& e)
-		{
-			std::cerr << e.what() << std::endl;
-		}
-	}
-
-	{
-		Bureaucrat b(name, 150);
-		try {
-			b.decrementGrade();
-		}
-		catch (Bureaucrat::GradeTooLowException& e)
-		{
-			std::cerr << e.what() << std::endl;
-		}
-	}
-
-	{
-		try {
-			Bureaucrat b(name, -199);
-		}
-		catch (std::exception& e)
-		{
-			std::cerr << e.what() << std::endl;
-		}
-	}
-
 	return (0);
 }
