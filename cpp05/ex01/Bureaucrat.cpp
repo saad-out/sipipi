@@ -1,5 +1,10 @@
 #include "Bureaucrat.hpp"
 
+Bureaucrat::Bureaucrat() : _name("default")
+{
+    _grade = 150;
+}
+
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 {
 	if (grade < 1)
@@ -8,6 +13,20 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 		throw GradeTooLowException();
 	_grade = grade;
 }
+
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other.getName()), _grade(other.getGrade()) {}
+
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
+{
+    if (this != &other)
+    {
+        /*_name = other.getName();*/
+        _grade = other.getGrade();
+    }
+    return (*this);
+}
+
+Bureaucrat::~Bureaucrat() {}
 
 const std::string& Bureaucrat::getName() const
 {

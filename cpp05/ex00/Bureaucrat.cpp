@@ -5,10 +5,7 @@ Bureaucrat::Bureaucrat() : _name("default")
     _grade = 150;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other)
-{
-    *this = other;
-}
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other.getName()), _grade(other.getGrade()) {}
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
