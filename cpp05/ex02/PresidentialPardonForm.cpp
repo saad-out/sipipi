@@ -29,3 +29,8 @@ void PresidentialPardonForm::execute(const Bureaucrat &executor) const
     AForm::execute(executor);
     std::cout << _target << " has been pardoned by Zafod Beeblebrox" << std::endl;
 }
+
+void PresidentialPardonForm::myType() const
+{
+    std::cout << "PresidentialPardonForm" << std::endl;
+}

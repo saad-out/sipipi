@@ -36,3 +36,8 @@ void RobotomyRequestForm::execute(const Bureaucrat &executor) const
         std::cout << "Robotomization of " << _target << " has failed" << std::endl;
     _count++;
 }
+
+void RobotomyRequestForm::myType() const
+{
+    std::cout << "RobotomyRequestForm" << std::endl;
+}
