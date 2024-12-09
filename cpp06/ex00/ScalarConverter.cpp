@@ -22,6 +22,11 @@ bool isInt(std::string &str)
     return (i == str.length());
 }
 
+bool isDoubleLiteral(std::string &str)
+{
+    return (str == "-inf" || str == "+inf" || str == "nan");
+}
+
 bool isDouble(std::string &str)
 {
     if (str.length() < 2)
@@ -46,6 +51,11 @@ bool isDouble(std::string &str)
     return (i == str.length());
 }
 
+bool isFloatLiteral(std::string &str)
+{
+    return (str == "-inff" || str == "+inff" || str == "nanf");
+}
+
 bool isFloat(std::string &str)
 {
     std::string tmp = str.substr(0, str.length() - 1);
@@ -59,9 +69,9 @@ void ScalarConverter::convert(std::string str) const
         std::cout << "char\n";
     else if (isInt(str))
         std::cout << "int\n";
-    else if (isDouble(str))
+    else if (isDouble(str) || isDoubleLiteral(str))
         std::cout << "double\n";
-    else if (isFloat(str))
+    else if (isFloat(str) || isFloatLiteral(str))
         std::cout << "float\n";
     else
         std::cout << "invalid\n";
