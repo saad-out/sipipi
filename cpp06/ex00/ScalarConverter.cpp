@@ -117,15 +117,10 @@ void ScalarConverter::display(double n)
         std::cout << "int: overflow!" << std::endl;
     else
         std::cout << "int: " << static_cast<int>(n) << std::endl;
-    if (n < -std::numeric_limits<float>::max() || n > std::numeric_limits<float>::max())
-    {
-        std::cout << "float: " << static_cast<float>(n);
-        if (n == static_cast<int>(n))
-            std::cout << ".0";
-        std::cout << "f" << std::endl;
-    }
-    else
-        std::cout << "float: overflow!" << std::endl;
+    std::cout << "float: " << static_cast<float>(n);
+    if (n == static_cast<int>(n))
+        std::cout << ".0";
+    std::cout << "f" << std::endl;
     std::cout << "double: " << n;
     if (n == static_cast<int>(n))
         std::cout << ".0";
