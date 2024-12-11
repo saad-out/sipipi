@@ -65,7 +65,7 @@ bool isFloat(std::string &str)
     return (isDouble(tmp) && str[str.length() - 1] == 'f');
 }
 
-void display(char c)
+void ScalarConverter::display(char c)
 {
     std::cout << "char: " << c << std::endl;
     std::cout << "int: " << static_cast<int>(c) << std::endl;
@@ -73,7 +73,7 @@ void display(char c)
     std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
 }
 
-void display(int n)
+void ScalarConverter::display(int n)
 {
     std::cout << "char: ";
     if (n < 33 || (n >= '0' && n <= '9') || n > 126)
@@ -85,7 +85,7 @@ void display(int n)
     std::cout << "double: " << static_cast<double>(n) << ".0" << std::endl;
 }
 
-void display(float n)
+void ScalarConverter::display(float n)
 {
     std::cout << "char: ";
     if (n < 33 || (n >= '0' && n <= '9') || n > 126)
@@ -106,7 +106,7 @@ void display(float n)
     std::cout << std::endl;
 }
 
-void display(double n)
+void ScalarConverter::display(double n)
 {
     std::cout << "char: ";
     if (n < 33 || (n >= '0' && n <= '9') || n > 126)
@@ -132,7 +132,7 @@ void display(double n)
     std::cout << std::endl;
 }
 
-void display(std::string &str)
+void ScalarConverter::display(std::string &str)
 {
     if (str.compare(0, 3, "nan") == 0)
     {
@@ -160,11 +160,11 @@ void display(std::string &str)
 void typecast_str(std::string &str, std::string type)
 {
     if (type == "char")
-        return display(static_cast<char>(str[0]));
+        return ScalarConverter::display(static_cast<char>(str[0]));
     else if (type == "DLiteral")
-        return display(str);
+        return ScalarConverter::display(str);
     else if (type == "FLiteral")
-        return display(str);
+        return ScalarConverter::display(str);
     long double container;
     std::stringstream ss(str);
     ss >> container;
@@ -179,21 +179,21 @@ void typecast_str(std::string &str, std::string type)
         if (container > std::numeric_limits<int>::max() || container < std::numeric_limits<int>::min())
             std::cerr << "int overflow!!" << std::endl;
         else
-            display(static_cast<int>(container));
+            ScalarConverter::display(static_cast<int>(container));
     }
     else if (type == "float")
     {
         if (container > std::numeric_limits<float>::max() || container < -std::numeric_limits<float>::max())
             std::cerr << "float overflow!!" << std::endl;
         else
-            display(static_cast<float>(container));
+            ScalarConverter::display(static_cast<float>(container));
     }
     else if (type == "double")
     {
         if (container > std::numeric_limits<double>::max() || container < -std::numeric_limits<double>::max())
             std::cerr << "double overflow!!" << std::endl;
         else
-            display(static_cast<double>(container));
+            ScalarConverter::display(static_cast<double>(container));
     }
     /*std::cout << "good!!\n";*/
 }
