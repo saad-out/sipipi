@@ -68,12 +68,70 @@ bool isFloat(std::string &str)
 void display(char c)
 {
     std::cout << "=====> character is: " << c << std::endl;
+    std::cout << "char: " << c << std::endl;
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
+    std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
+}
+
+void display(int n)
+{
+    std::cout << "=====> number is: " << n << std::endl;
+    std::cout << "char: ";
+    if (n < 33 || (n >= '0' && n <= '9') || n > 126)
+        std::cout << "non displayable" << std::endl;
+    else
+         std::cout << static_cast<char>(n) << std::endl;
+    std::cout << "int: " << n << std::endl;
+    std::cout << "float: " << static_cast<float>(n) << ".0f" << std::endl;
+    std::cout << "double: " << static_cast<double>(n) << ".0" << std::endl;
+}
+
+void display(float n)
+{
+    std::cout << "=====> float is: " << n << std::endl;
+    std::cout << "char: ";
+    if (n < 33 || (n >= '0' && n <= '9') || n > 126)
+        std::cout << "non displayable" << std::endl;
+    else
+         std::cout << static_cast<char>(n) << std::endl;
+    std::cout << "int: " << static_cast<int>(n) << std::endl;
+    std::cout << "float: " << n;
+    if (n == static_cast<int>(n))
+        std::cout << ".0";
+    std::cout << "f" << std::endl;
+    std::cout << "double: " << static_cast<double>(n) << std::endl;
+    if (n == static_cast<int>(n))
+        std::cout << ".0";
+}
+
+void display(double n)
+{
+    std::cout << "=====> double is: " << n << std::endl;
+    std::cout << "char: ";
+    if (n < 33 || (n >= '0' && n <= '9') || n > 126)
+        std::cout << "non displayable" << std::endl;
+    else
+         std::cout << static_cast<char>(n) << std::endl;
+    std::cout << "int: " << static_cast<int>(n) << std::endl;
+    std::cout << "float: " << static_cast<float>(n);
+    if (n == static_cast<int>(n))
+        std::cout << ".0";
+    std::cout << "f" << std::endl;
+    std::cout << "double: " << n;
+    if (n == static_cast<int>(n))
+        std::cout << ".0";
+    std::cout << std::endl;
 }
 
 void typecast_str(std::string &str, std::string type)
 {
     if (type == "char")
         return display(static_cast<char>(str[0]));
+    else if (type == "DLiteral")
+        return ;
+    else if (type == "FLiteral")
+        return ;
     long double container;
     std::stringstream ss(str);
     ss >> container;
@@ -82,26 +140,29 @@ void typecast_str(std::string &str, std::string type)
         std::cerr << "Error in conversion to container" << std::endl;
         return ;
     }
-    std::cout << "=======> container: " << container << std::endl;
+    /*std::cout << "=======> container: " << container << std::endl;*/
     if (type == "int")
     {
         if (container > std::numeric_limits<int>::max() || container < std::numeric_limits<int>::min())
             std::cerr << "int overflow!!" << std::endl;
-        return ;
+        else
+            display(static_cast<int>(container));
     }
-    if (type == "float")
+    else if (type == "float")
     {
-        if (container > std::numeric_limits<float>::max() || container < std::numeric_limits<float>::min())
+        if (container > std::numeric_limits<float>::max() || container < -std::numeric_limits<float>::max())
             std::cerr << "float overflow!!" << std::endl;
-        return ;
+        else
+            display(static_cast<float>(container));
     }
-    if (type == "double")
+    else if (type == "double")
     {
-        if (container > std::numeric_limits<double>::max() || container < std::numeric_limits<double>::min())
+        if (container > std::numeric_limits<double>::max() || container < -std::numeric_limits<double>::max())
             std::cerr << "double overflow!!" << std::endl;
-        return ;
+        else
+            display(static_cast<double>(container));
     }
-    std::cout << "good!!\n";
+    /*std::cout << "good!!\n";*/
 }
 
 void ScalarConverter::convert(std::string str)
@@ -110,23 +171,34 @@ void ScalarConverter::convert(std::string str)
     if (isChar(str))
     {
         typecast_str(str, "char");
-        std::cout << "char\n";
+        /*std::cout << "char\n";*/
     }
     else if (isInt(str))
     {
         typecast_str(str, "int");
-        std::cout << "int\n";
+        /*std::cout << "int\n";*/
     }
-    else if (isDouble(str) || isDoubleLiteral(str))
+    else if (isDouble(str))
     {
         typecast_str(str, "double");
-        std::cout << "double\n";
+        /*std::cout << "double\n";*/
     }
-    else if (isFloat(str) || isFloatLiteral(str))
+    else if (isFloat(str))
     {
         typecast_str(str, "float");
-        std::cout << "float\n";
+        /*std::cout << "float\n";*/
+    }
+    else if (isDoubleLiteral(str))
+    {
+        typecast_str(str, "DLiteral");
+        /*std::cout << "double\n";*/
+    }
+    else if (isFloatLiteral(str))
+    {
+        typecast_str(str, "FLiteral");
+        /*std::cout << "float\n";*/
     }
     else
         std::cout << "invalid\n";
+    std::cout << "=====================\n";
 }
