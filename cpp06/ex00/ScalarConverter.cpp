@@ -67,7 +67,6 @@ bool isFloat(std::string &str)
 
 void display(char c)
 {
-    std::cout << "=====> character is: " << c << std::endl;
     std::cout << "char: " << c << std::endl;
     std::cout << "int: " << static_cast<int>(c) << std::endl;
     std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
@@ -76,7 +75,6 @@ void display(char c)
 
 void display(int n)
 {
-    std::cout << "=====> number is: " << n << std::endl;
     std::cout << "char: ";
     if (n < 33 || (n >= '0' && n <= '9') || n > 126)
         std::cout << "non displayable" << std::endl;
@@ -89,7 +87,6 @@ void display(int n)
 
 void display(float n)
 {
-    std::cout << "=====> float is: " << n << std::endl;
     std::cout << "char: ";
     if (n < 33 || (n >= '0' && n <= '9') || n > 126)
         std::cout << "non displayable" << std::endl;
@@ -103,14 +100,14 @@ void display(float n)
     if (n == static_cast<int>(n))
         std::cout << ".0";
     std::cout << "f" << std::endl;
-    std::cout << "double: " << static_cast<double>(n) << std::endl;
+    std::cout << "double: " << static_cast<double>(n);
     if (n == static_cast<int>(n))
         std::cout << ".0";
+    std::cout << std::endl;
 }
 
 void display(double n)
 {
-    std::cout << "=====> double is: " << n << std::endl;
     std::cout << "char: ";
     if (n < 33 || (n >= '0' && n <= '9') || n > 126)
         std::cout << "non displayable" << std::endl;
@@ -203,7 +200,6 @@ void typecast_str(std::string &str, std::string type)
 
 void ScalarConverter::convert(std::string str)
 {
-    std::cout << str << ": ";
     if (isChar(str))
         typecast_str(str, "char");
     else if (isInt(str))
@@ -217,6 +213,5 @@ void ScalarConverter::convert(std::string str)
     else if (isFloatLiteral(str))
         typecast_str(str, "FLiteral");
     else
-        std::cout << "invalid\n";
-    std::cout << "=====================\n";
+        std::cout << "invalid type!\n";
 }
