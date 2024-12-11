@@ -124,14 +124,39 @@ void display(double n)
     std::cout << std::endl;
 }
 
+void display(std::string &str)
+{
+    if (str.compare(0, 3, "nan") == 0)
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible " << std::endl;
+        std::cout << "float: nanf" << std::endl;
+        std::cout << "double: nan" << std::endl;
+    }
+    else if (str.compare(0, 1, "+") == 0)
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible " << std::endl;
+        std::cout << "float: +inff" << std::endl;
+        std::cout << "double: +inf" << std::endl;
+    }
+    else
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible " << std::endl;
+        std::cout << "float: -inff" << std::endl;
+        std::cout << "double: -inf" << std::endl;
+    }
+}
+
 void typecast_str(std::string &str, std::string type)
 {
     if (type == "char")
         return display(static_cast<char>(str[0]));
     else if (type == "DLiteral")
-        return ;
+        return display(str);
     else if (type == "FLiteral")
-        return ;
+        return display(str);
     long double container;
     std::stringstream ss(str);
     ss >> container;
