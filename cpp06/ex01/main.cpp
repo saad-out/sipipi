@@ -18,5 +18,7 @@ int main()
     else
         std::cout << "Error ❌" << std::endl;
 
+    delete ptr;
+
     return (0);
 }
