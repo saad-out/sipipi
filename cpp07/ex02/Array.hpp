@@ -14,11 +14,18 @@ class Array {
         Array(unsigned int n);
         Array(const Array &other);
         Array& operator = (const Array &other);
-        T& operator [] (int index);
+        T& operator [] (unsigned int index);
         ~Array();
 
+        unsigned int size() const;
         void print_arr();
 };
+
+template <class T>
+unsigned int Array<T>::size() const
+{
+    return (n);
+}
 
 template <class T>
 Array<T>::Array() : n(0)
@@ -63,7 +70,7 @@ Array<T>::~Array()
 }
 
 template <class T>
-T& Array<T>::operator [] (int index)
+T& Array<T>::operator [] (unsigned int index)
 {
     if (index >= n)
         throw std::exception();
