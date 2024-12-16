@@ -9,6 +9,7 @@ int main()
 {
     Base *b = generate();
     identify(b);
+    delete b;
 
     A a;
     identify(a);
