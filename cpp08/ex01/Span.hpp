@@ -18,6 +18,23 @@ class Span
         Span(const Span &other);
         Span & operator=(const Span &other);
 
+        // Exceptions
+        class ArrayFullException : public std::exception
+        {
+            virtual const char *what() const throw()
+            {
+                return ("Array is full");
+            }
+        };
+
+        class ArrayEmptyException : public std::exception
+        {
+            virtual const char *what() const throw()
+            {
+                return ("Array is empty");
+            }
+        };
+
         void addNumber(int n);
         int shortestSpan();
         int longestSpan();
@@ -27,8 +44,8 @@ class Span
         void addNumberRange(InputIterator begin, InputIterator end)
         {
             if (_index + std::distance(begin, end) > _n)
-                throw std::exception();
-                // throw Span::ArrayFullException();
+                throw Span::ArrayFullException();
+                // throw std::exception();
             _array.insert(_array.end(), begin, end);
             _index += std::distance(begin, end);
         }

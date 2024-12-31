@@ -27,8 +27,7 @@ Span& Span::operator=(const Span &other)
 void Span::addNumber(int n)
 {
     if (_index >= _n)
-        throw std::exception();
-        // throw Span::ArrayFullException();
+        throw Span::ArrayFullException();
     _array.push_back(n);
     _index++;
 }
@@ -36,8 +35,7 @@ void Span::addNumber(int n)
 int Span::shortestSpan()
 {
     if (_index <= 1)
-        throw std::exception();
-        // throw Span::ArrayEmptyException();
+        throw Span::ArrayEmptyException();
     std::sort(_array.begin(), _array.end());
     int min = 0x7FFFFFFF;
     for (unsigned int i = 1; i < _array.size(); i++)
@@ -51,8 +49,7 @@ int Span::shortestSpan()
 int Span::longestSpan()
 {
     if (_index <= 1)
-        throw std::exception();
-        // throw Span::ArrayEmptyException();
+        throw Span::ArrayEmptyException();
     std::sort(_array.begin(), _array.end());
     return (_array[_array.size() - 1] - _array[0]);
 }
