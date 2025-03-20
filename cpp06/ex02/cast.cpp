@@ -1,5 +1,4 @@
 #include "cast.hpp"
-#include <typeinfo>
 
 Base *generate(void) {
   srand(time(NULL));
@@ -34,7 +33,7 @@ void identify(Base &p) {
     (void)a;
     std::cout << "A" << std::endl;
     return;
-  } catch (std::bad_cast &e) {
+  } catch (std::exception &e) {
     (void)e;
   }
   try {
@@ -42,7 +41,7 @@ void identify(Base &p) {
     (void)b;
     std::cout << "B" << std::endl;
     return;
-  } catch (std::bad_cast &e) {
+  } catch (std::exception &e) {
     (void)e;
   }
   try {
@@ -50,7 +49,7 @@ void identify(Base &p) {
     (void)c;
     std::cout << "C" << std::endl;
     return;
-  } catch (std::bad_cast &e) {
+  } catch (std::exception &e) {
     (void)e;
   }
   std::cout << "Unknown" << std::endl;
