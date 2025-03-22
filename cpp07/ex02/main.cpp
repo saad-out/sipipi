@@ -1,34 +1,44 @@
 #include "Array.hpp"
+#include <ctime>
+#include <iostream>
+#include <stdlib.h>
 
-int main()
-{
-    Array<int> obj(3);
-    std::cout << "a1 : " << obj[1] << std::endl;
-    obj[1] = -1;
-    std::cout << "a1 : " << obj[1] << std::endl;
-    obj.print_arr();
+#define MAX_VAL 750
+int main(int, char **) {
+  Array<int> numbers(MAX_VAL);
+  int *mirror = new int[MAX_VAL];
+  srand(time(NULL));
+  for (int i = 0; i < MAX_VAL; i++) {
+    const int value = rand();
+    numbers[i] = value;
+    mirror[i] = value;
+  }
+  // SCOPE
+  {
+    Array<int> tmp = numbers;
+    Array<int> test(tmp);
+  }
 
-    try
-    {
-        obj[-1] = -1;
-        std::cout << "\n";
-        obj.print_arr();
-        std::cout << "\n";
-
-    } catch (std::exception &e)
-    {
-        std::cout << "hi\n";
+  for (int i = 0; i < MAX_VAL; i++) {
+    if (mirror[i] != numbers[i]) {
+      std::cerr << "didn't save the same value!!" << std::endl;
+      return 1;
     }
+  }
+  try {
+    numbers[-2] = 0;
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << '\n';
+  }
+  try {
+    numbers[MAX_VAL] = 0;
+  } catch (const std::exception &e) {
+    std::cerr << e.what() << '\n';
+  }
 
-    Array<int> obj1(0);
-    obj1.print_arr();
-
-    Array<int> obj2;
-    obj2.print_arr();
-
-    Array<int> obj3(10);
-    obj3.print_arr();
-
-    std::cout << "size is: " << obj3.size() << std::endl;
-    return (0);
+  for (int i = 0; i < MAX_VAL; i++) {
+    numbers[i] = rand();
+  }
+  delete[] mirror; //
+  return 0;
 }
