@@ -53,3 +53,10 @@ int Span::longestSpan()
     std::sort(_array.begin(), _array.end());
     return (_array[_array.size() - 1] - _array[0]);
 }
+
+void Span::printArray()
+{
+    for (unsigned int i = 0; i < _array.size(); i++)
+        std::cout << _array[i] << " ";
+    std::cout << std::endl;
+}

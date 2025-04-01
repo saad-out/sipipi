@@ -1,4 +1,5 @@
 #include "Span.hpp"
+#include <stdlib.h>
 
 int main()
 {
@@ -15,11 +16,19 @@ int main()
     v.push_back(1);
     v.push_back(2);
     v.push_back(3);
-    std::cout << "good1" << std::endl;
-    sp.addNumberRange(v.begin(), v.end());
-    std::cout << "good" << std::endl;
+
+    std::cout << "Before adding range" << std::endl;
     sp.printArray();
-    std::cout << "good2" << std::endl;
+    sp.addNumberRange(v.begin(), v.end());
+    std::cout << "After adding range" << std::endl;
+    sp.printArray();
+
+    // test with 10000 elements
+    Span sp2 = Span(10000);
+    for (int i = 0; i < 10000; i++)
+        sp2.addNumber(rand() % 10000);
+    std::cout << sp2.shortestSpan() << std::endl;
+    std::cout << sp2.longestSpan() << std::endl;
 
 
     return (0);
