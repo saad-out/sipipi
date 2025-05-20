@@ -5,17 +5,6 @@
 #include <random>
 #include <vector>
 
-// Function to find position of an element in a container
-template <typename Container>
-int findPosition(const Container &arr, int element) {
-  for (size_t i = 0; i < arr.size(); ++i) {
-    if (arr[i] == element) {
-      return i;
-    }
-  }
-  return arr.size(); // Element not found
-}
-
 // =================== Vector Implementation ===================
 std::vector<int> jacobstalNumbers_vec(int n) {
   if (n < 0) {
@@ -27,7 +16,14 @@ std::vector<int> jacobstalNumbers_vec(int n) {
   }
   for (int i = 2; i <= n; ++i) {
     // J(n) = J(n-1) + 2 * J(n-2)
-    result.push_back(result[i - 1] + 2 * result[i - 2]);
+    long long intValue = result[i - 1] + 2 * result[i - 2];
+    if (intValue > (std::numeric_limits<int>::max())) {
+      break;
+    }
+    result.push_back(static_cast<int>(intValue));
+    if (result.back() > n) {
+      break;
+    }
   }
   return result;
 }
@@ -68,50 +64,25 @@ std::vector<int> MergeInsertionSort_vec(std::vector<int> arr) {
   if (arr.size() <= 1)
     return arr;
   std::vector<int> winners, losers;
-  std::vector<int> winnerValues; // To track original winner values
   bool unpairedExists = (arr.size() % 2 != 0);
-  int lastIndex = unpairedExists ? arr.size() - 2 : arr.size() - 1;
-
-  // Pair elements, keeping track of the original winner values
-  for (int i = 1; i <= lastIndex; i += 2) {
-    if (arr[i] > arr[i - 1]) {
-      winners.push_back(arr[i]);
-      losers.push_back(arr[i - 1]);
-      winnerValues.push_back(arr[i]); // Store the original value
-    } else {
-      winners.push_back(arr[i - 1]);
-      losers.push_back(arr[i]);
-      winnerValues.push_back(arr[i - 1]); // Store the original value
-    }
+  for (int i = 1; i < arr.size(); i += 2) {
+    (arr[i] > arr[i - 1])
+        ? (winners.push_back(arr[i]), losers.push_back(arr[i - 1]))
+        : (winners.push_back(arr[i - 1]), losers.push_back(arr[i]));
   }
-
-  // Recursively sort winners
   std::vector<int> sortedWinners = MergeInsertionSort_vec(winners);
-
-  // Handle unpaired element
   if (unpairedExists) {
     binarySearchInsertion_vec(sortedWinners, 0, sortedWinners.size() - 1,
                               arr.back());
   }
-
-  // Get insertion order
   std::vector<int> indices = generateJacobsthalIndices_vec(losers.size());
-
-  // Insert losers in Jacobsthal order
   for (int i = 0; i < indices.size(); ++i) {
     int index = indices[i];
     if (index < losers.size()) {
-      int loser = losers[index];
-      int winner = winnerValues[index];
-
-      // Find position of corresponding winner in sorted list
-      int winnerPos = findPosition(sortedWinners, winner);
-
-      // Insert loser using binary search, but only search up to winner position
-      binarySearchInsertion_vec(sortedWinners, 0, winnerPos - 1, loser);
+      binarySearchInsertion_vec(sortedWinners, 0, sortedWinners.size() - 1,
+                                losers[index]);
     }
   }
-
   return sortedWinners;
 }
 
@@ -126,7 +97,14 @@ std::deque<int> jacobstalNumbers_deq(int n) {
   }
   for (int i = 2; i <= n; ++i) {
     // J(n) = J(n-1) + 2 * J(n-2)
-    result.push_back(result[i - 1] + 2 * result[i - 2]);
+    long long intValue = result[i - 1] + 2 * result[i - 2];
+    if (intValue > (std::numeric_limits<int>::max())) {
+      break;
+    }
+    result.push_back(static_cast<int>(intValue));
+    if (result.back() > n) {
+      break;
+    }
   }
   return result;
 }
@@ -167,50 +145,25 @@ std::deque<int> MergeInsertionSort_deq(std::deque<int> arr) {
   if (arr.size() <= 1)
     return arr;
   std::deque<int> winners, losers;
-  std::deque<int> winnerValues; // To track original winner values
   bool unpairedExists = (arr.size() % 2 != 0);
-  int lastIndex = unpairedExists ? arr.size() - 2 : arr.size() - 1;
-
-  // Pair elements, keeping track of the original winner values
-  for (int i = 1; i <= lastIndex; i += 2) {
-    if (arr[i] > arr[i - 1]) {
-      winners.push_back(arr[i]);
-      losers.push_back(arr[i - 1]);
-      winnerValues.push_back(arr[i]); // Store the original value
-    } else {
-      winners.push_back(arr[i - 1]);
-      losers.push_back(arr[i]);
-      winnerValues.push_back(arr[i - 1]); // Store the original value
-    }
+  for (int i = 1; i < arr.size(); i += 2) {
+    (arr[i] > arr[i - 1])
+        ? (winners.push_back(arr[i]), losers.push_back(arr[i - 1]))
+        : (winners.push_back(arr[i - 1]), losers.push_back(arr[i]));
   }
-
-  // Recursively sort winners
   std::deque<int> sortedWinners = MergeInsertionSort_deq(winners);
-
-  // Handle unpaired element
   if (unpairedExists) {
     binarySearchInsertion_deq(sortedWinners, 0, sortedWinners.size() - 1,
                               arr.back());
   }
-
-  // Get insertion order
   std::deque<int> indices = generateJacobsthalIndices_deq(losers.size());
-
-  // Insert losers in Jacobsthal order
-  for (size_t i = 0; i < indices.size(); ++i) {
+  for (int i = 0; i < indices.size(); ++i) {
     int index = indices[i];
-    if (index < static_cast<int>(losers.size())) {
-      int loser = losers[index];
-      int winner = winnerValues[index];
-
-      // Find position of corresponding winner in sorted list
-      int winnerPos = findPosition(sortedWinners, winner);
-
-      // Insert loser using binary search, but only search up to winner position
-      binarySearchInsertion_deq(sortedWinners, 0, winnerPos - 1, loser);
+    if (index < losers.size()) {
+      binarySearchInsertion_deq(sortedWinners, 0, sortedWinners.size() - 1,
+                                losers[index]);
     }
   }
-
   return sortedWinners;
 }
 
@@ -252,6 +205,11 @@ int main() {
 
     // Generate random array
     std::vector<int> arr = generateRandomArray(size, 1, 10000);
+    /*std::cout << "Generated array: ";*/
+    /*for (int i = 0; i < arr.size(); ++i) {*/
+    /*  std::cout << arr[i] << " ";*/
+    /*}*/
+    /*std::cout << "..." << std::endl;*/
     std::deque<int> arr_deque = vectorToDeque(arr);
 
     // Time vector implementation
