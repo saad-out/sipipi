@@ -37,10 +37,9 @@ std::vector<int> jacobstalNumbers_vec(int n) {
   if (n < 0) {
     throw std::invalid_argument("Negative number of terms not allowed.");
   }
-  std::vector<int> result = {0};
-  if (n > 0) {
-    result.push_back(1);
-  }
+  std::vector<int> result;
+  result.push_back(0);
+  if (n >= 1) result.push_back(1);
   for (int i = 2; i <= n; ++i) {
     // J(n) = J(n-1) + 2 * J(n-2)
     long long intValue = result[i - 1] + 2 * result[i - 2];
@@ -118,10 +117,9 @@ std::deque<int> jacobstalNumbers_deq(int n) {
   if (n < 0) {
     throw std::invalid_argument("Negative number of terms not allowed.");
   }
-  std::deque<int> result = {0};
-  if (n > 0) {
-    result.push_back(1);
-  }
+  std::deque<int> result;
+  result.push_back(0);
+  if (n >= 1) result.push_back(1);
   for (int i = 2; i <= n; ++i) {
     // J(n) = J(n-1) + 2 * J(n-2)
     long long intValue = result[i - 1] + 2 * result[i - 2];

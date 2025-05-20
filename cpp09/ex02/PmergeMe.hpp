@@ -15,6 +15,6 @@ public:
 private:
   PmergeMe();
   ~PmergeMe();
-  PmergeMe(const PmergeMe &src) = delete;
-  PmergeMe &operator=(const PmergeMe &rhs) = delete;
+  PmergeMe(const PmergeMe &src);
+  PmergeMe &operator=(const PmergeMe &rhs);
 };
